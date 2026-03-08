@@ -131,6 +131,7 @@
                                 EnableCompactFolders="{Binding Source={x:Static vm:Preferences.Instance}, Path=EnableCompactFoldersInChangesTree}"
                                 Changes="{Binding VisibleUnstaged}"
                                 SelectedChanges="{Binding SelectedUnstaged, Mode=TwoWay}"
+                                DecodedPaths="{Binding DecodedPaths}"
                                 ContextRequested="OnUnstagedContextRequested"
                                 ChangeDoubleTapped="OnUnstagedChangeDoubleTapped"
                                 KeyDown="OnUnstagedKeyDown"/>
@@ -185,6 +186,7 @@
                                 EnableCompactFolders="{Binding Source={x:Static vm:Preferences.Instance}, Path=EnableCompactFoldersInChangesTree}"
                                 Changes="{Binding VisibleStaged}"
                                 SelectedChanges="{Binding SelectedStaged, Mode=TwoWay}"
+                                DecodedPaths="{Binding DecodedPaths}"
                                 ContextRequested="OnStagedContextRequested"
                                 ChangeDoubleTapped="OnStagedChangeDoubleTapped"
                                 KeyDown="OnStagedKeyDown"/>

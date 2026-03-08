@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -32,6 +32,8 @@ namespace SourceGit.ViewModels
         {
             get => _repo;
         }
+
+        public IReadOnlyDictionary<string, string> DecodedPaths => _ofpaContext.DecodedPaths;
 
         public int ActiveTabIndex
         {
@@ -173,6 +175,13 @@ namespace SourceGit.ViewModels
             _repo = repo;
             _sharedData = sharedData ?? new CommitDetailSharedData();
             WebLinks = Models.CommitLink.Get(repo.Remotes);
+
+            _ofpaContext = new Utilities.OFPADecodingContext(repo);
+            _ofpaContext.PropertyChanged += (o, e) =>
+            {
+                if (e.PropertyName == nameof(Utilities.OFPADecodingContext.DecodedPaths))
+                    OnPropertyChanged(nameof(DecodedPaths));
+            };
         }
 
         public void Dispose()
@@ -190,6 +199,7 @@ namespace SourceGit.ViewModels
             _requestingRevisionFiles = false;
             _revisionFiles = null;
             _revisionFileSearchSuggestion = null;
+            _ofpaContext.Dispose();
         }
 
         public void NavigateTo(string commitSHA)
@@ -445,6 +455,11 @@ namespace SourceGit.ViewModels
                         else
                             SelectedChanges = [VisibleChanges[0]];
                     });
+
+                    if (_repo.EnableOFPADecoding)
+                        ScheduleOFPARefresh(changes);
+                    else
+                        _ofpaContext.Clear();
                 }
             }, token);
         }
@@ -638,6 +653,35 @@ namespace SourceGit.ViewModels
             }
         }
 
+        private void ScheduleOFPARefresh(List<Models.Change> changes)
+        {
+            var commit = _commit;
+            if (commit == null) return;
+            var repoPath = _repo.FullPath;
+
+            _ofpaContext.ScheduleRefresh(async () =>
+            {
+                var parent = commit.Parents.Count == 0 ? Models.Commit.EmptyTreeSHA1 : $"{commit.SHA}^";
+                var specs = new List<Utilities.OFPANameLookup.RevisionObjectSpec>();
+
+                foreach (var change in changes)
+                {
+                    if (Utilities.OFPAParser.IsOFPAFile(change.Path))
+                    {
+                        var spec = (change.WorkTree == Models.ChangeState.Deleted || change.Index == Models.ChangeState.Deleted)
+                            ? $"{parent}:{change.Path}"
+                            : $"{commit.SHA}:{change.Path}";
+                        specs.Add(new Utilities.OFPANameLookup.RevisionObjectSpec(change.Path, spec));
+                    }
+                }
+
+                if (specs.Count == 0)
+                    return new Dictionary<string, string>();
+
+                return await Utilities.OFPANameLookup.LookupRevisionObjectsAsync(repoPath, specs).ConfigureAwait(false);
+            });
+        }
+
         [GeneratedRegex(@"\b(https?://|ftp://)[\w\d\._/\-~%@()+:?&=#!]*[\w\d/]")]
         private static partial Regex REG_URL_FORMAT();
 
@@ -667,5 +711,6 @@ namespace SourceGit.ViewModels
         private List<string> _revisionFileSearchSuggestion = null;
         private bool _canOpenRevisionFileWithDefaultEditor = false;
         private Vector _scrollOffset = Vector.Zero;
+        private readonly Utilities.OFPADecodingContext _ofpaContext;
     }
 }

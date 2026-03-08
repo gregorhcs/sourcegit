@@ -59,6 +59,12 @@ namespace SourceGit.Models
             set;
         } = false;
 
+        public bool EnableOFPADecoding
+        {
+            get;
+            set;
+        } = false;
+
         public bool FetchAllRemotes
         {
             get;
