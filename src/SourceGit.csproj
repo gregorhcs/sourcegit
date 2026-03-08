@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
@@ -68,5 +68,9 @@
   <ItemGroup>
     <TrimmerRootAssembly Include="SourceGit" />
     <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SourceGit.Tests" />
   </ItemGroup>
 </Project>
