@@ -16,6 +16,29 @@ namespace SourceGit.Views
             InitializeComponent();
         }
 
+        private void OpenInExplorer(object _, RoutedEventArgs e)
+        {
+            if (DataContext is ViewModels.Repository repo)
+            {
+                Native.OS.OpenInFileManager(repo.FullPath);
+                e.Handled = true;
+            }
+        }
+
+        private void OpenInCommandPrompt(object _, RoutedEventArgs e)
+        {
+            if (DataContext is ViewModels.Repository repo && System.OperatingSystem.IsWindows())
+            {
+                var executable = System.IO.Path.Combine(System.Environment.SystemDirectory, "cmd.exe");
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(executable)
+                {
+                    WorkingDirectory = repo.FullPath,
+                    UseShellExecute = true,
+                });
+                e.Handled = true;
+            }
+        }
+
         private void OpenWithExternalTools(object sender, RoutedEventArgs ev)
         {
             if (sender is Button button && DataContext is ViewModels.Repository repo)
