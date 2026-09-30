@@ -192,7 +192,7 @@ namespace SourceGit.Views
             if (!IsLoaded)
                 return;
 
-            var leftHeight = LeftSidebarGroups.Bounds.Height - 28.0 * 5 - 4;
+            var leftHeight = LeftSidebarGroups.Bounds.Height - 28.0 * 6 - 4;
             if (leftHeight <= 0)
                 return;
 
@@ -584,7 +584,15 @@ namespace SourceGit.Views
         private void OnResolveInProgress(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModels.Repository repo)
-                repo.SelectedViewIndex = 1;
+                repo.SelectedViewIndex = 0;
+
+            e.Handled = true;
+        }
+
+        private void OnOpenStashes(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ViewModels.Repository repo)
+                repo.SelectedViewIndex = 2;
 
             e.Handled = true;
         }

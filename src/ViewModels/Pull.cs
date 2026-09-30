@@ -143,7 +143,7 @@ namespace SourceGit.ViewModels
 
             log.Complete();
 
-            if (_repo.SelectedViewIndex == 0)
+            if (_repo.SelectedViewIndex == 1)
             {
                 var head = await new Commands.QueryRevisionByRefName(_repo.FullPath, "HEAD").GetResultAsync();
                 _repo.NavigateToCommit(head, true);

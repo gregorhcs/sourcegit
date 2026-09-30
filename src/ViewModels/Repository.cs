@@ -79,13 +79,17 @@ namespace SourceGit.ViewModels
                 {
                     SelectedView = value switch
                     {
-                        1 => _workingCopy,
+                        0 => _workingCopy,
+                        1 => _histories,
                         2 => _stashesPage,
-                        _ => _histories,
+                        _ => _workingCopy,
                     };
+                    OnPropertyChanged(nameof(IsStashesSelected));
                 }
             }
         }
+
+        public bool IsStashesSelected => _selectedViewIndex == 2;
 
         public object SelectedView
         {
@@ -284,7 +288,7 @@ namespace SourceGit.ViewModels
                 if (SetProperty(ref _isSearchingCommits, value))
                 {
                     if (value)
-                        SelectedViewIndex = 0;
+                        SelectedViewIndex = 1;
                     else
                         _searchCommitContext.EndSearch();
                 }
@@ -482,12 +486,12 @@ namespace SourceGit.ViewModels
             if (Preferences.Instance.ShowLocalChangesByDefault)
             {
                 _selectedView = _workingCopy;
-                _selectedViewIndex = 1;
+                _selectedViewIndex = 0;
             }
             else
             {
                 _selectedView = _histories;
-                _selectedViewIndex = 0;
+                _selectedViewIndex = 1;
             }
 
             _lastFetchTime = DateTime.Now;
@@ -849,7 +853,7 @@ namespace SourceGit.ViewModels
             }
             else
             {
-                SelectedViewIndex = 0;
+                SelectedViewIndex = 1;
                 _histories?.NavigateTo(sha);
             }
         }
