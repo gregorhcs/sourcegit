@@ -58,7 +58,7 @@ namespace SourceGit.Models
         {
             get;
             set;
-        } = false;
+        } = true;
 
         public AvaloniaList<CommitTemplate> CommitTemplates
         {
