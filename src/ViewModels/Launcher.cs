@@ -35,9 +35,14 @@ namespace SourceGit.ViewModels
             set
             {
                 if (SetProperty(ref _activePage, value))
+                {
+                    OnPropertyChanged(nameof(IsRepositoryActive));
                     PostActivePageChanged();
+                }
             }
         }
+
+        public bool IsRepositoryActive => _activePage?.Data is Repository;
 
         public ICommandPalette CommandPalette
         {

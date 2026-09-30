@@ -11,6 +11,7 @@
       <Color x:Key="Color.Contents">#FFFAFAFA</Color>
       <Color x:Key="Color.Badge">#FFB0CEE8</Color>
       <Color x:Key="Color.BadgeFG">#FF1F1F1F</Color>
+      <Color x:Key="Color.PendingBadge">#FF91A7B8</Color>
       <Color x:Key="Color.Conflict">#FF836C2E</Color>
       <Color x:Key="Color.Conflict.Foreground">#FFFFFFFF</Color>
       <Color x:Key="Color.Conflict.MineBG">#400078D7</Color>
@@ -45,6 +46,7 @@
       <Color x:Key="Color.Contents">#FF212121</Color>
       <Color x:Key="Color.Badge">#FF8F8F8F</Color>
       <Color x:Key="Color.BadgeFG">#FFDDDDDD</Color>
+      <Color x:Key="Color.PendingBadge">#FF303030</Color>
       <Color x:Key="Color.Conflict">#FFFAFAD2</Color>
       <Color x:Key="Color.Conflict.Foreground">#FF252525</Color>
       <Color x:Key="Color.Conflict.MineBG">#400078D7</Color>
@@ -79,6 +81,7 @@
   <SolidColorBrush x:Key="Brush.Contents" Color="{DynamicResource Color.Contents}"/>
   <SolidColorBrush x:Key="Brush.Badge" Color="{DynamicResource Color.Badge}"/>
   <SolidColorBrush x:Key="Brush.BadgeFG" Color="{DynamicResource Color.BadgeFG}"/>
+  <SolidColorBrush x:Key="Brush.PendingBadge" Color="{DynamicResource Color.PendingBadge}"/>
   <SolidColorBrush x:Key="Brush.Conflict" Color="{DynamicResource Color.Conflict}"/>
   <SolidColorBrush x:Key="Brush.Conflict.Foreground" Color="{DynamicResource Color.Conflict.Foreground}"/>
   <SolidColorBrush x:Key="Brush.Conflict.MineBG" Color="{DynamicResource Color.Conflict.MineBG}"/>

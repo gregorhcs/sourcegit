@@ -313,6 +313,71 @@ namespace SourceGit.Views
             }
         }
 
+        private ViewModels.Repository GetActiveRepository()
+        {
+            return (DataContext as ViewModels.Launcher)?.ActivePage?.Data as ViewModels.Repository;
+        }
+
+        private RepositoryToolbar GetActiveRepositoryToolbar()
+        {
+            return this.FindDescendantOfType<RepositoryToolbar>();
+        }
+
+        private async void OnRepositoryStash(object sender, RoutedEventArgs e)
+        {
+            var repo = GetActiveRepository();
+            if (repo != null)
+                await repo.StashAllAsync(false);
+            e.Handled = true;
+        }
+
+        private void OnRepositoryApplyPatch(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepository()?.ApplyPatch();
+            e.Handled = true;
+        }
+
+        private void OnRepositoryNewBranch(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepository()?.CreateNewBranch();
+            e.Handled = true;
+        }
+
+        private void OnRepositoryGitFlow(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.OpenGitFlowMenu(MainMenuButton, e);
+        }
+
+        private void OnRepositoryGitLFS(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.OpenGitLFSMenu(MainMenuButton, e);
+        }
+
+        private void OnRepositoryBisect(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.StartBisect(MainMenuButton, e);
+        }
+
+        private void OnRepositoryCustomActions(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.OpenCustomActionMenu(MainMenuButton, e);
+        }
+
+        private void OnRepositoryCleanup(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.Cleanup(MainMenuButton, e);
+        }
+
+        private void OnRepositoryViewLogs(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.OpenGitLogs(MainMenuButton, e);
+        }
+
+        private void OnRepositoryStatistics(object sender, RoutedEventArgs e)
+        {
+            GetActiveRepositoryToolbar()?.OpenStatistics(MainMenuButton, e);
+        }
+
         private void OnOpenWorkspaceMenu(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && DataContext is ViewModels.Launcher launcher)

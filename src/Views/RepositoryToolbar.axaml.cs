@@ -1,10 +1,6 @@
-using System.Collections.Generic;
-
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
-using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
 
 namespace SourceGit.Views
@@ -39,125 +35,26 @@ namespace SourceGit.Views
             }
         }
 
-        private void OpenWithExternalTools(object sender, RoutedEventArgs ev)
+        private void OpenOrigin(object _, RoutedEventArgs e)
         {
-            if (sender is Button button && DataContext is ViewModels.Repository repo)
+            if (DataContext is ViewModels.Repository repo)
             {
-                var fullpath = repo.FullPath;
-                var menu = new ContextMenu();
-                menu.Placement = PlacementMode.BottomEdgeAlignedLeft;
-
-                RenderOptions.SetBitmapInterpolationMode(menu, BitmapInterpolationMode.HighQuality);
-                RenderOptions.SetEdgeMode(menu, EdgeMode.Antialias);
-                RenderOptions.SetTextRenderingMode(menu, TextRenderingMode.Antialias);
-
-                var explore = new MenuItem();
-                explore.Header = App.Text("Repository.Explore");
-                explore.Icon = App.CreateMenuIcon("Icons.Explore");
-                explore.Click += (_, e) =>
+                foreach (var remote in repo.Remotes)
                 {
-                    Native.OS.OpenInFileManager(fullpath);
-                    e.Handled = true;
-                };
-
-                var terminal = new MenuItem();
-                terminal.Header = App.Text("Repository.Terminal");
-                terminal.Icon = App.CreateMenuIcon("Icons.Terminal");
-                terminal.Click += (_, e) =>
-                {
-                    Native.OS.OpenTerminal(fullpath);
-                    e.Handled = true;
-                };
-
-                menu.Items.Add(explore);
-                menu.Items.Add(terminal);
-
-                var tools = Native.OS.ExternalTools;
-                if (tools.Count > 0)
-                {
-                    menu.Items.Add(new MenuItem() { Header = "-" });
-
-                    foreach (var tool in tools)
+                    if (remote.Name == "origin" && remote.TryGetVisitURL(out var visit))
                     {
-                        var dupTool = tool;
-
-                        var item = new MenuItem();
-                        item.Header = App.Text("Repository.OpenIn", dupTool.Name);
-                        item.Icon = new Image { Width = 16, Height = 16, Source = dupTool.IconImage };
-
-                        var options = dupTool.MakeLaunchOptions(fullpath);
-                        if (options is { Count: > 0 })
-                        {
-                            foreach (var opt in options)
-                            {
-                                var subItem = new MenuItem();
-                                subItem.Header = opt.Title;
-                                subItem.Click += (_, e) =>
-                                {
-                                    dupTool.Launch(opt.Args);
-                                    e.Handled = true;
-                                };
-
-                                item.Items.Add(subItem);
-                            }
-
-                            var openAsFolder = new MenuItem();
-                            openAsFolder.Header = App.Text("Repository.OpenAsFolder");
-                            openAsFolder.Click += (_, e) =>
-                            {
-                                dupTool.Launch(fullpath.Quoted());
-                                e.Handled = true;
-                            };
-                            item.Items.Add(new MenuItem() { Header = "-" });
-                            item.Items.Add(openAsFolder);
-                        }
-                        else
-                        {
-                            item.Click += (_, e) =>
-                            {
-                                dupTool.Launch(fullpath.Quoted());
-                                e.Handled = true;
-                            };
-                        }
-
-                        menu.Items.Add(item);
+                        Native.OS.OpenBrowser(visit);
+                        e.Handled = true;
+                        return;
                     }
                 }
 
-                var urls = new Dictionary<string, string>();
-                foreach (var r in repo.Remotes)
-                {
-                    if (r.TryGetVisitURL(out var visit))
-                        urls.Add(r.Name, visit);
-                }
-
-                if (urls.Count > 0)
-                {
-                    menu.Items.Add(new MenuItem() { Header = "-" });
-
-                    foreach (var (name, addr) in urls)
-                    {
-                        var dupUrl = addr;
-
-                        var item = new MenuItem();
-                        item.Header = App.Text("Repository.Visit", name);
-                        item.Icon = App.CreateMenuIcon("Icons.Remotes");
-                        item.Click += (_, e) =>
-                        {
-                            Native.OS.OpenBrowser(dupUrl);
-                            e.Handled = true;
-                        };
-
-                        menu.Items.Add(item);
-                    }
-                }
-
-                menu.Open(button);
-                ev.Handled = true;
+                App.RaiseException(repo.FullPath, "Remote 'origin' does not have a browser URL.");
+                e.Handled = true;
             }
         }
 
-        private async void OpenStatistics(object _, RoutedEventArgs e)
+        public async void OpenStatistics(object _, RoutedEventArgs e)
         {
             if (DataContext is ViewModels.Repository repo)
             {
@@ -238,7 +135,7 @@ namespace SourceGit.Views
             }
         }
 
-        private void OpenGitFlowMenu(object sender, RoutedEventArgs ev)
+        public void OpenGitFlowMenu(object sender, RoutedEventArgs ev)
         {
             if (DataContext is ViewModels.Repository repo && sender is Control control)
             {
@@ -304,7 +201,7 @@ namespace SourceGit.Views
             ev.Handled = true;
         }
 
-        private void OpenGitLFSMenu(object sender, RoutedEventArgs ev)
+        public void OpenGitLFSMenu(object sender, RoutedEventArgs ev)
         {
             if (DataContext is ViewModels.Repository repo && sender is Control control)
             {
@@ -443,7 +340,7 @@ namespace SourceGit.Views
             ev.Handled = true;
         }
 
-        private async void StartBisect(object sender, RoutedEventArgs e)
+        public async void StartBisect(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModels.Repository { IsBisectCommandRunning: false, InProgressContext: null } repo &&
                 repo.CanCreatePopup())
@@ -459,7 +356,7 @@ namespace SourceGit.Views
             e.Handled = true;
         }
 
-        private async void Cleanup(object sender, RoutedEventArgs e)
+        public async void Cleanup(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModels.Repository repo)
             {
@@ -468,7 +365,7 @@ namespace SourceGit.Views
             }
         }
 
-        private void OpenCustomActionMenu(object sender, RoutedEventArgs ev)
+        public void OpenCustomActionMenu(object sender, RoutedEventArgs ev)
         {
             if (DataContext is ViewModels.Repository repo && sender is Control control)
             {
@@ -504,7 +401,7 @@ namespace SourceGit.Views
             ev.Handled = true;
         }
 
-        private async void OpenGitLogs(object sender, RoutedEventArgs e)
+        public async void OpenGitLogs(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModels.Repository repo)
             {
