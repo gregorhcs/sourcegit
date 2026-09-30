@@ -9,6 +9,25 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SourceGit.Views.Repository"
              x:DataType="vm:Repository">
+  <UserControl.Styles>
+    <Style Selector="ToggleButton.group_expander Button.group_header_action">
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="IsHitTestVisible" Value="False"/>
+    </Style>
+    <Style Selector="ToggleButton.group_expander ToggleButton.group_header_action">
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="IsHitTestVisible" Value="False"/>
+    </Style>
+    <Style Selector="ToggleButton.group_expander:pointerover Button.group_header_action">
+      <Setter Property="Opacity" Value="1"/>
+      <Setter Property="IsHitTestVisible" Value="True"/>
+    </Style>
+    <Style Selector="ToggleButton.group_expander:pointerover ToggleButton.group_header_action">
+      <Setter Property="Opacity" Value="1"/>
+      <Setter Property="IsHitTestVisible" Value="True"/>
+    </Style>
+  </UserControl.Styles>
+
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="{Binding Source={x:Static vm:Preferences.Instance}, Path=Layout.RepositorySidebarWidth, Mode=TwoWay}" MinWidth="200" MaxWidth="500"/>
@@ -228,7 +247,7 @@
                 <TextBlock Classes="group_header_label" Text="{Binding LocalBranchesCount, StringFormat='({0})'}" Margin="4,0,0,0"/>
               </StackPanel>
               <Button Grid.Column="2"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0,0,0"
                       Click="OnOpenSortLocalBranchMenu"
@@ -238,7 +257,7 @@
                   <Path Width="12" Height="12" Data="{StaticResource Icons.OrderByTime}" IsVisible="{Binding !IsSortingLocalBranchByName, Mode=OneWay}"/>
                 </Grid>
               </Button>
-              <Button Grid.Column="3" Classes="icon_button" Width="14" Margin="8,0" Command="{Binding CreateNewBranch}" ToolTip.Tip="{DynamicResource Text.Repository.NewBranch}">
+              <Button Grid.Column="3" Classes="icon_button group_header_action" Width="14" Margin="8,0" Command="{Binding CreateNewBranch}" ToolTip.Tip="{DynamicResource Text.Repository.NewBranch}">
                 <Path Width="12" Height="12" Data="{StaticResource Icons.Branch.Add}"/>
               </Button>
             </Grid>
@@ -262,7 +281,7 @@
                 <TextBlock Classes="group_header_label" Text="{Binding Remotes, Converter={x:Static c:ListConverters.ToCount}}" Margin="4,0,0,0"/>
               </StackPanel>
               <Button Grid.Column="2"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0,0,0"
                       Click="OnOpenSortRemoteBranchMenu"
@@ -272,7 +291,7 @@
                   <Path Width="12" Height="12" Data="{StaticResource Icons.OrderByTime}" IsVisible="{Binding !IsSortingRemoteBranchByName, Mode=OneWay}"/>
                 </Grid>
               </Button>
-              <Button Grid.Column="3" Classes="icon_button" Width="14" Margin="8,0" Command="{Binding AddRemote}" ToolTip.Tip="{DynamicResource Text.Repository.Remotes.Add}">
+              <Button Grid.Column="3" Classes="icon_button group_header_action" Width="14" Margin="8,0" Command="{Binding AddRemote}" ToolTip.Tip="{DynamicResource Text.Repository.Remotes.Add}">
                 <Path Width="12" Height="12" Data="{StaticResource Icons.Remote.Add}"/>
               </Button>
             </Grid>
@@ -296,12 +315,12 @@
                 <TextBlock Classes="group_header_label" Text="{Binding Tags, Converter={x:Static c:ListConverters.ToCount}}" Margin="4,0,0,0"/>
               </StackPanel>
               <ToggleButton Grid.Column="2"
-                            Classes="show_as_tree"
+                            Classes="show_as_tree group_header_action"
                             Width="14"
                             IsChecked="{Binding ShowTagsAsTree, Mode=TwoWay}"
                             ToolTip.Tip="{DynamicResource Text.Repository.ShowTagsAsTree}"/>
               <Button Grid.Column="3"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0,0,0"
                       Click="OnOpenSortTagMenu"
@@ -312,7 +331,7 @@
                 </Grid>
               </Button>
               <Button Grid.Column="4"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0"
                       Command="{Binding CreateNewTag}"
@@ -342,13 +361,13 @@
                 <TextBlock Classes="group_header_label" Text="{Binding Submodules, Converter={x:Static c:ListConverters.ToCount}}" Margin="4,0,0,0"/>
               </StackPanel>
               <ToggleButton Grid.Column="2"
-                            Classes="show_as_tree"
+                            Classes="show_as_tree group_header_action"
                             Width="14"
                             IsChecked="{Binding ShowSubmodulesAsTree, Mode=TwoWay}"
                             IsVisible="{Binding Submodules, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}"
                             ToolTip.Tip="{DynamicResource Text.Repository.ShowSubmodulesAsTree}"/>
               <Button Grid.Column="3"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0"
                       Command="{Binding UpdateSubmodules}"
@@ -357,7 +376,7 @@
                 <Path Width="12" Height="12" Data="{StaticResource Icons.Loading}"/>
               </Button>
               <Button Grid.Column="4"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="0,0,8,0"
                       Command="{Binding AddSubmodule}"
@@ -385,7 +404,7 @@
                 <TextBlock Classes="group_header_label" Text="{Binding Worktrees, Converter={x:Static c:ListConverters.ToCount}}" Margin="4,0,0,0"/>
               </StackPanel>
               <Button Grid.Column="2"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="8,0"
                       Click="OnPruneWorktrees"
@@ -394,7 +413,7 @@
                 <Path Width="12" Height="12" Data="{StaticResource Icons.Loading}"/>
               </Button>
               <Button Grid.Column="3"
-                      Classes="icon_button"
+                      Classes="icon_button group_header_action"
                       Width="14"
                       Margin="0,0,9,0"
                       Command="{Binding AddWorktree}"

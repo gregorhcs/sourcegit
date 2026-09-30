@@ -156,8 +156,8 @@
                                                     VerticalAlignment="Center"
                                                     FontFamily="{DynamicResource Fonts.Monospace}"
                                                     FontSize="10"
-                                                    Foreground="{DynamicResource Brush.BadgeFG}"
-                                                    Background="{DynamicResource Brush.Badge}"/>
+                                                    Foreground="{DynamicResource Brush.FG1}"
+                                                    Background="Transparent"/>
 
               <!-- Filter Mode Switcher -->
               <v:FilterModeSwitchButton Grid.Column="3"

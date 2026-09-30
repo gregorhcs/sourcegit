@@ -46,8 +46,7 @@
                 CanUserSortColumns="False"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                HeadersVisibility="Column"
-                ColumnHeaderHeight="24"
+                HeadersVisibility="None"
                 ClipboardCopyMode="None"
                 Focusable="False"
                 RowHeight="26"
@@ -251,7 +250,7 @@
       </DataGrid>
 
       <v:CommitGraph x:Name="CommitGraph"
-                     Margin="0,24,0,0"
+                     Margin="0"
                      Graph="{Binding Graph}"
                      DotBrush="{DynamicResource Brush.Contents}"
                      OnlyHighlightCurrentBranch="{Binding $parent[v:Histories].OnlyHighlightCurrentBranch}"
