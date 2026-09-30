@@ -792,8 +792,8 @@ namespace SourceGit.ViewModels
         private int _imageDiffActiveIdx = 0;
         private bool _enableCompactFoldersInChangesTree = false;
 
-        private Models.ChangeViewMode _unstagedChangeViewMode = Models.ChangeViewMode.List;
-        private Models.ChangeViewMode _stagedChangeViewMode = Models.ChangeViewMode.List;
+        private Models.ChangeViewMode _unstagedChangeViewMode = Models.ChangeViewMode.Tree;
+        private Models.ChangeViewMode _stagedChangeViewMode = Models.ChangeViewMode.Tree;
         private Models.ChangeViewMode _commitChangeViewMode = Models.ChangeViewMode.List;
         private Models.ChangeViewMode _stashChangeViewMode = Models.ChangeViewMode.List;
 

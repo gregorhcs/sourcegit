@@ -514,7 +514,8 @@
     <Setter Property="FontWeight" Value="Bold"/>
   </Style>
   <Style Selector="TextBlock.info_label">
-    <Setter Property="Foreground" Value="{DynamicResource Brush.FG2}"/>
+    <Setter Property="Foreground" Value="{DynamicResource Brush.FG1}"/>
+    <Setter Property="Opacity" Value=".56"/>
     <Setter Property="FontWeight" Value="Bold"/>
     <Setter Property="HorizontalAlignment" Value="Right"/>
   </Style>
