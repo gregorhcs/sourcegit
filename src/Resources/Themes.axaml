@@ -3,6 +3,7 @@
   <ResourceDictionary.ThemeDictionaries>
     <ResourceDictionary x:Key="Light">
       <Color x:Key="Color.Window">#FFF0F5F9</Color>
+      <Color x:Key="Color.Sidebar">#FFF0F5F9</Color>
       <Color x:Key="Color.WindowBorder">#FF999999</Color>
       <Color x:Key="Color.TitleBar">#FFCFDEEA</Color>
       <Color x:Key="Color.ToolBar">#FFF0F5F9</Color>
@@ -35,12 +36,13 @@
     </ResourceDictionary>
 
     <ResourceDictionary x:Key="Dark">
-      <Color x:Key="Color.Window">#FF252525</Color>
+      <Color x:Key="Color.Window">#FF333333</Color>
+      <Color x:Key="Color.Sidebar">#FF2C2C2D</Color>
       <Color x:Key="Color.WindowBorder">#FF606060</Color>
-      <Color x:Key="Color.TitleBar">#FF1F1F1F</Color>
-      <Color x:Key="Color.ToolBar">#FF2F2F2F</Color>
+      <Color x:Key="Color.TitleBar">#FF1A1A1A</Color>
+      <Color x:Key="Color.ToolBar">#FF1A1A1A</Color>
       <Color x:Key="Color.Popup">#FF2B2B2B</Color>
-      <Color x:Key="Color.Contents">#FF1C1C1C</Color>
+      <Color x:Key="Color.Contents">#FF212121</Color>
       <Color x:Key="Color.Badge">#FF8F8F8F</Color>
       <Color x:Key="Color.BadgeFG">#FFDDDDDD</Color>
       <Color x:Key="Color.Conflict">#FFFAFAD2</Color>
@@ -64,11 +66,12 @@
       <Color x:Key="Color.Link">#4DAAFC</Color>
       <Color x:Key="Color.InlineCode">#FF383838</Color>
       <Color x:Key="Color.InlineCodeFG">#FFF0F0F0</Color>
-      <Color x:Key="Color.DataGridHeaderBG">#FF2B2B2B</Color>
+      <Color x:Key="Color.DataGridHeaderBG">#FF212121</Color>
     </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
 
   <SolidColorBrush x:Key="Brush.Window" Color="{DynamicResource Color.Window}"/>
+  <SolidColorBrush x:Key="Brush.Sidebar" Color="{DynamicResource Color.Sidebar}"/>
   <SolidColorBrush x:Key="Brush.WindowBorder" Color="{DynamicResource Color.WindowBorder}"/>
   <SolidColorBrush x:Key="Brush.TitleBar" Color="{DynamicResource Color.TitleBar}"/>
   <SolidColorBrush x:Key="Brush.ToolBar" Color="{DynamicResource Color.ToolBar}"/>
