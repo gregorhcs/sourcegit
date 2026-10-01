@@ -368,7 +368,7 @@
   <x:String x:Key="Text.Diff.VisualLines.All" xml:space="preserve">Show All Lines</x:String>
   <x:String x:Key="Text.Diff.VisualLines.Decr" xml:space="preserve">Decrease Number of Visible Lines</x:String>
   <x:String x:Key="Text.Diff.VisualLines.Incr" xml:space="preserve">Increase Number of Visible Lines</x:String>
-  <x:String x:Key="Text.Diff.Welcome" xml:space="preserve">SELECT FILE TO VIEW CHANGES</x:String>
+  <x:String x:Key="Text.Diff.Welcome" xml:space="preserve">Select file to view changes</x:String>
   <x:String x:Key="Text.DirHistories" xml:space="preserve">Dir History</x:String>
   <x:String x:Key="Text.DirtyState.HasLocalChanges" xml:space="preserve">Has Local Changes</x:String>
   <x:String x:Key="Text.DirtyState.HasPendingPullOrPush" xml:space="preserve">Mismatched with Upstream</x:String>
@@ -742,7 +742,7 @@
   <x:String x:Key="Text.Repository.Dashboard" xml:space="preserve">Dashboard</x:String>
   <x:String x:Key="Text.Repository.DiscardAll" xml:space="preserve">Discard all changes</x:String>
   <x:String x:Key="Text.Repository.Explore" xml:space="preserve">Open in File Browser</x:String>
-  <x:String x:Key="Text.Repository.Filter" xml:space="preserve">Search Branches/Tags/Submodules</x:String>
+  <x:String x:Key="Text.Repository.Filter" xml:space="preserve">Filter</x:String>
   <x:String x:Key="Text.Repository.FilterCommits" xml:space="preserve">Visibility in Graph</x:String>
   <x:String x:Key="Text.Repository.FilterCommits.Default" xml:space="preserve">Unset</x:String>
   <x:String x:Key="Text.Repository.FilterCommits.Exclude" xml:space="preserve">Hide in commit graph</x:String>
@@ -937,8 +937,8 @@
   <x:String x:Key="Text.WorkingCopy.CanStageTip" xml:space="preserve">You can stage this file now.</x:String>
   <x:String x:Key="Text.WorkingCopy.ClearCommitHistories" xml:space="preserve">Clear History</x:String>
   <x:String x:Key="Text.WorkingCopy.ClearCommitHistories.Confirm" xml:space="preserve">Are you sure you want to clear all commit message history? This action cannot be undone.</x:String>
-  <x:String x:Key="Text.WorkingCopy.Commit" xml:space="preserve">COMMIT</x:String>
-  <x:String x:Key="Text.WorkingCopy.CommitAndPush" xml:space="preserve">COMMIT &amp; PUSH</x:String>
+  <x:String x:Key="Text.WorkingCopy.Commit" xml:space="preserve">Commit</x:String>
+  <x:String x:Key="Text.WorkingCopy.CommitAndPush" xml:space="preserve">Commit &amp; Push</x:String>
   <x:String x:Key="Text.WorkingCopy.CommitMessageHelper" xml:space="preserve">Template/History</x:String>
   <x:String x:Key="Text.WorkingCopy.CommitTip" xml:space="preserve">Trigger click event</x:String>
   <x:String x:Key="Text.WorkingCopy.CommitToEdit" xml:space="preserve">Commit (Edit)</x:String>

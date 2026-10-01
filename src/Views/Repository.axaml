@@ -36,6 +36,14 @@
     <Style Selector="ToggleButton.sidebar_page_button:pointerover, ToggleButton.sidebar_page_button:checked">
       <Setter Property="Background" Value="{DynamicResource Brush.AccentHovered}"/>
     </Style>
+    <Style Selector="ListBoxItem Button.page_action, ListBoxItem ToggleButton.page_action">
+      <Setter Property="Opacity" Value="0"/>
+      <Setter Property="IsHitTestVisible" Value="False"/>
+    </Style>
+    <Style Selector="ListBoxItem:pointerover Button.page_action, ListBoxItem:pointerover ToggleButton.page_action">
+      <Setter Property="Opacity" Value="1"/>
+      <Setter Property="IsHitTestVisible" Value="True"/>
+    </Style>
   </UserControl.Styles>
 
   <Grid>
@@ -83,7 +91,7 @@
 
               <ListBoxItem BorderThickness="0" IsVisible="{Binding !IsBare}">
                 <Grid Classes="view_mode" ColumnDefinitions="*,Auto,Auto,Auto">
-                  <TextBlock Grid.Column="0" Classes="header" Text="{DynamicResource Text.WorkingCopy}"/>
+                  <TextBlock Grid.Column="0" Classes="header" Margin="8,0,0,0" Text="{DynamicResource Text.WorkingCopy}"/>
                   <Border Grid.Column="1"
                           Height="18"
                           Margin="6,0" Padding="9,0"
@@ -103,7 +111,7 @@
                         Fill="DarkOrange"
                         IsVisible="{Binding InProgressContext, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                   <Button Grid.Column="3"
-                          Classes="icon_button"
+                          Classes="icon_button page_action"
                           Width="26" Height="26"
                           Command="{Binding DiscardAllChanges}"
                           ToolTip.Tip="{DynamicResource Text.Repository.DiscardAll}">
@@ -114,10 +122,10 @@
 
               <ListBoxItem BorderThickness="0">
                 <Grid Classes="view_mode" ColumnDefinitions="*,Auto,Auto,Auto">
-                  <TextBlock Grid.Column="0" Classes="header" Text="{DynamicResource Text.Histories}"/>
+                  <TextBlock Grid.Column="0" Classes="header" Margin="8,0,0,0" Text="{DynamicResource Text.Histories}"/>
 
                   <ToggleButton Grid.Column="1"
-                                Classes="line_path"
+                                Classes="line_path page_action"
                                 Width="26" Height="26"
                                 Background="Transparent"
                                 IsChecked="{Binding OnlyHighlightCurrentBranchInHistory, Mode=TwoWay}"
@@ -125,7 +133,7 @@
                     <Path Width="12" Height="12" Data="{StaticResource Icons.LightOn}"/>
                   </ToggleButton>
                   <ToggleButton Grid.Column="2"
-                                Classes="line_path"
+                                Classes="line_path page_action"
                                 Width="26" Height="26"
                                 Background="Transparent"
                                 IsChecked="{Binding Source={x:Static vm:Preferences.Instance}, Path=DisplayTimeAsPeriodInHistories, Mode=TwoWay}"
@@ -133,7 +141,7 @@
                     <Path Width="12" Height="12" Data="{StaticResource Icons.Stopwatch}"/>
                   </ToggleButton>
                   <Button Grid.Column="3"
-                          Classes="icon_button"
+                          Classes="icon_button page_action"
                           Width="26" Height="26"
                           Click="OnOpenAdvancedHistoriesOption"
                           ToolTip.Tip="{DynamicResource Text.Repository.MoreOptions}">

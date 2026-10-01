@@ -17,9 +17,9 @@
             <TextBlock Classes="small italic" Margin="0,4,0,0" Text="{DynamicResource Text.CtrlClickTip}" Foreground="{DynamicResource Brush.FG2}"/>
           </StackPanel>
         </ToolTip.Tip>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Path Width="18" Height="18" Data="{StaticResource Icons.Fetch}"/>
-          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Center" Text="{DynamicResource Text.Fetch}"/>
+          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{DynamicResource Text.Fetch}"/>
         </StackPanel>
       </Button>
 
@@ -30,7 +30,7 @@
             <TextBlock Classes="small italic" Margin="0,4,0,0" Text="{DynamicResource Text.CtrlClickTip}" Foreground="{DynamicResource Brush.FG2}"/>
           </StackPanel>
         </ToolTip.Tip>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Grid Width="28" Height="22">
             <Path Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Data="{StaticResource Icons.Pull}"/>
             <Border MinWidth="18" Height="16"
@@ -46,7 +46,7 @@
                          HorizontalAlignment="Center"/>
             </Border>
           </Grid>
-          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Center" Text="{DynamicResource Text.Pull}"/>
+          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{DynamicResource Text.Pull}"/>
         </StackPanel>
       </Button>
 
@@ -57,7 +57,7 @@
             <TextBlock Classes="small italic" Margin="0,4,0,0" Text="{DynamicResource Text.CtrlClickTip}" Foreground="{DynamicResource Brush.FG2}"/>
           </StackPanel>
         </ToolTip.Tip>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Grid Width="28" Height="22">
             <Path Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Data="{StaticResource Icons.Push}"/>
             <Border MinWidth="18" Height="16"
@@ -73,7 +73,7 @@
                          HorizontalAlignment="Center"/>
             </Border>
           </Grid>
-          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Center" Text="{DynamicResource Text.Push}"/>
+          <TextBlock Margin="0,7,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{DynamicResource Text.Push}"/>
         </StackPanel>
       </Button>
 
@@ -107,30 +107,30 @@
 
     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,8,0" ZIndex="2">
       <Button Classes="icon_button" Width="58" Height="60" Click="OpenInExplorer" IsVisible="{OnPlatform False, Windows=True}" ToolTip.Tip="Open repository in Windows Explorer">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Path Width="18" Height="18" Data="{StaticResource Icons.Explore}"/>
-          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Center" Text="Explorer"/>
+          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="Explorer"/>
         </StackPanel>
       </Button>
 
       <Button Classes="icon_button" Width="58" Height="60" Click="OpenInCommandPrompt" IsVisible="{OnPlatform False, Windows=True}" ToolTip.Tip="Open Command Prompt in repository">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Path Width="18" Height="18" Data="{StaticResource Icons.Terminal}"/>
-          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Center" Text="Console"/>
+          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="Console"/>
         </StackPanel>
       </Button>
 
       <Button Classes="icon_button" Width="58" Height="60" Click="OpenOrigin" ToolTip.Tip="Visit origin in browser">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Path Width="18" Height="18" Data="{StaticResource Icons.Remotes}"/>
-          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Center" Text="Origin"/>
+          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="Origin"/>
         </StackPanel>
       </Button>
 
-      <Button Classes="icon_button" Width="64" Height="60" Click="OpenConfigure" ToolTip.Tip="{DynamicResource Text.Repository.Configure}">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <Button Classes="icon_button" Width="58" Height="60" Click="OpenConfigure" ToolTip.Tip="{DynamicResource Text.Repository.Configure}">
+        <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Path Width="18" Height="18" Data="{StaticResource Icons.Settings}"/>
-          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Center" Text="Configure"/>
+          <TextBlock Margin="0,3,0,0" FontSize="11" HorizontalAlignment="Stretch" TextAlignment="Center" Text="Config"/>
         </StackPanel>
       </Button>
     </StackPanel>
