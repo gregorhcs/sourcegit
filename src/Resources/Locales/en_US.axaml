@@ -187,9 +187,9 @@
   <x:String x:Key="Text.CommitDetail.Info.SHA" xml:space="preserve">SHA</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Signer" xml:space="preserve">Signer:</x:String>
   <x:String x:Key="Text.CommitDetail.Info.WebLinks" xml:space="preserve">Open in Browser</x:String>
-  <x:String x:Key="Text.CommitMessageTextBox.Column" xml:space="preserve">COL</x:String>
+  <x:String x:Key="Text.CommitMessageTextBox.Column" xml:space="preserve">Column</x:String>
   <x:String x:Key="Text.CommitMessageTextBox.Placeholder" xml:space="preserve">Enter commit message. Please use an empty-line to separate subject and description!</x:String>
-  <x:String x:Key="Text.CommitMessageTextBox.SubjectCount" xml:space="preserve">SUBJECT</x:String>
+  <x:String x:Key="Text.CommitMessageTextBox.SubjectCount" xml:space="preserve">Subject</x:String>
   <x:String x:Key="Text.Compare" xml:space="preserve">Compare</x:String>
   <x:String x:Key="Text.Compare.WithHead" xml:space="preserve">Compare with HEAD</x:String>
   <x:String x:Key="Text.Configure" xml:space="preserve">Repository Configure</x:String>
@@ -753,7 +753,7 @@
   <x:String x:Key="Text.Repository.HistoriesOrder" xml:space="preserve">COMMITS ORDER</x:String>
   <x:String x:Key="Text.Repository.HistoriesOrder.ByDate" xml:space="preserve">Commit Date</x:String>
   <x:String x:Key="Text.Repository.HistoriesOrder.Topo" xml:space="preserve">Topologically</x:String>
-  <x:String x:Key="Text.Repository.LocalBranches" xml:space="preserve">Local branches</x:String>
+  <x:String x:Key="Text.Repository.LocalBranches" xml:space="preserve">Local Branches</x:String>
   <x:String x:Key="Text.Repository.MoreOptions" xml:space="preserve">More options...</x:String>
   <x:String x:Key="Text.Repository.NavigateToCurrentHead" xml:space="preserve">Navigate to HEAD</x:String>
   <x:String x:Key="Text.Repository.NewBranch" xml:space="preserve">Create Branch</x:String>

@@ -32,7 +32,7 @@
         </ToolTip.Tip>
         <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Grid Width="28" Height="22">
-            <Path Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Data="{StaticResource Icons.Pull}"/>
+            <Path Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Data="{StaticResource Icons.Pull}"/>
             <Border MinWidth="18" Height="16"
                     Padding="4,0"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
@@ -59,7 +59,7 @@
         </ToolTip.Tip>
         <StackPanel Width="58" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
           <Grid Width="28" Height="22">
-            <Path Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Data="{StaticResource Icons.Push}"/>
+            <Path Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Data="{StaticResource Icons.Push}"/>
             <Border MinWidth="18" Height="16"
                     Padding="4,0"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
