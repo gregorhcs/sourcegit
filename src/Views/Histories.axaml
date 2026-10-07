@@ -46,7 +46,8 @@
                 CanUserSortColumns="False"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                HeadersVisibility="None"
+                HeadersVisibility="Column"
+                ColumnHeaderHeight="10"
                 ClipboardCopyMode="None"
                 Focusable="False"
                 RowHeight="26"
@@ -67,6 +68,7 @@
             </Style>
             <Style Selector="^ /template/ DataGridColumnHeadersPresenter#PART_ColumnHeadersPresenter">
               <Setter Property="Grid.Column" Value="0" />
+              <Setter Property="Opacity" Value="0" />
             </Style>
             <Style Selector="^ /template/ Rectangle#PART_ColumnHeadersAndRowsSeparator">
               <Setter Property="Fill" Value="{DynamicResource Brush.Border0}"/>
@@ -75,9 +77,13 @@
               <Setter Property="Background" Value="{DynamicResource Brush.Contents}"/>
             </Style>
           </Style>
+
+          <Style Selector="DataGridColumnHeadersPresenter#PART_ColumnHeadersPresenter:pointerover">
+            <Setter Property="Opacity" Value="1"/>
+          </Style>
           
           <Style Selector="DataGridColumnHeader">
-            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="MinHeight" Value="10"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Template">
               <ControlTemplate>
@@ -85,22 +91,35 @@
                         Background="{TemplateBinding Background}"
                         BorderThickness="0"
                         CornerRadius="0">
-                  <Grid ColumnDefinitions="*,4">
+                  <Grid ColumnDefinitions="*,5">
                     <ContentPresenter x:Name="PART_ContentPresenter"
                                       Grid.Column="0"
+                                      Opacity="0"
+                                      IsHitTestVisible="False"
                                       Content="{TemplateBinding Content}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}" />
 
-                    <Rectangle Name="VerticalSeparator"
-                               Grid.Column="1"
-                               Width="1"
-                               HorizontalAlignment="Center" VerticalAlignment="Stretch"
-                               Fill="{DynamicResource Brush.Border0}"
-                               IsVisible="{TemplateBinding AreSeparatorsVisible}" />
+                    <Border Grid.Column="1"
+                            Classes="column_resize_handle"
+                            Width="5"
+                            Background="Transparent"
+                            Cursor="SizeWestEast"
+                            IsVisible="{TemplateBinding AreSeparatorsVisible}">
+                      <Rectangle Name="VerticalSeparator"
+                                 Width="2"
+                                 Margin="0,1"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Stretch"
+                                 Fill="{DynamicResource Brush.FG2}" />
+                    </Border>
                   </Grid>
                 </Border>
               </ControlTemplate>
             </Setter>
+          </Style>
+
+          <Style Selector="Border.column_resize_handle:pointerover > Rectangle">
+            <Setter Property="Fill" Value="{DynamicResource Brush.FG1}"/>
           </Style>
 
           <Style Selector="DataGridCell">
@@ -204,7 +223,12 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
 
-          <DataGridTemplateColumn MinWidth="100" CanUserResize="False" IsReadOnly="True" IsVisible="{Binding IsSHAColumnVisible, Mode=OneWay}">
+          <DataGridTemplateColumn MinWidth="100" CanUserResize="True" IsReadOnly="True" IsVisible="{Binding IsSHAColumnVisible, Mode=OneWay}">
+            <DataGridTemplateColumn.Width>
+              <Binding Source="{x:Static vm:Preferences.Instance}"
+                       Path="Layout.SHAColumnWidth"
+                       Mode="TwoWay"/>
+            </DataGridTemplateColumn.Width>
             <DataGridTemplateColumn.Header>
               <TextBlock Classes="table_header" Text="{DynamicResource Text.Histories.Header.SHA}" HorizontalAlignment="Center"/>
             </DataGridTemplateColumn.Header>
@@ -220,7 +244,12 @@
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
 
-          <DataGridTemplateColumn MinWidth="160" CanUserResize="False" IsReadOnly="True" IsVisible="{Binding IsDateTimeColumnVisible, Mode=OneWay}">
+          <DataGridTemplateColumn MinWidth="160" CanUserResize="True" IsReadOnly="True" IsVisible="{Binding IsDateTimeColumnVisible, Mode=OneWay}">
+            <DataGridTemplateColumn.Width>
+              <Binding Source="{x:Static vm:Preferences.Instance}"
+                       Path="Layout.DateTimeColumnWidth"
+                       Mode="TwoWay"/>
+            </DataGridTemplateColumn.Width>
             <DataGridTemplateColumn.Header>
               <Grid HorizontalAlignment="Center">
                 <TextBlock Classes="table_header"
